@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 
 @section('head')
-    <title></title>
+    <title>laundry aplikasi terbaik indonesia</title>
     <style>
         .banner1 {
             background-image: url('/images/banner/banner2.png');

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('/assets/app/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/dist/css/admin/panel.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/OwlCarousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/OwlCarousel/css/owl.theme.default.min.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,12 +49,20 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="">About Me</a>
                     </li>
+                    <div class="d-block d-lg-none">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}">Masuk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('signup')}}">Daftar</a>
+                        </li>
+                    </div>
                 </ul>
-                <form class="d-flex gap-2 ms-2" role="search">
-                    <a href="#" class="btn btn-outline-secondary py-1" style="width: 120px">Daftar</a>
-                    <a href="#" class="btn btn-outline-warning py-1" style="width: 120px">Daftar</a>
+                <form class="d-none d-lg-flex gap-2 ms-2" role="search">
+                    <a href="{{route('login')}}" class="btn btn-outline-secondary py-1" style="width: 120px">Masuk</a>
+                    <a href="{{route('signup')}}" class="btn btn-outline-warning py-1" style="width: 120px">Daftar</a>
                 </form>
             </div>
         </div>
@@ -115,9 +122,8 @@
     </footer>
 
 
-    <script src="{{ asset('assets/dist/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/popper.js') }}"></script>
-    <script src="{{ asset('assets/app/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/jquery.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/popper.js') }}"></script>
     <script src="{{ asset('/assets/app/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/OwlCarousel/owl.carousel.min.js') }}"></script>
     @yield('script')
