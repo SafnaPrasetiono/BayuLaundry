@@ -79,6 +79,32 @@
                                 </a>
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </th>
+                            <th class="text-them">#eMBpT01</th>
+                            <td>R1C1</td>
+                            <td>Iwan Banara</td>
+                            <td>Rp. 56.000</td>
+                            <td>
+                                <span class="badge text-bg-success">success</span>
+                            </td>
+                            <td>
+                                {{ now() }}
+                            </td>
+                            <td class="gap-1">
+                                <a href="#" class="btn btn-primary btn-sm rounded">
+                                    <i class="fas fa-eye fa-xs fa-fw"></i>
+                                </a>
+                                <a href="#" class="btn btn-warning btn-sm rounded">
+                                    <i class="fas fa-pencil-alt fa-xs fa-fw"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-sm rounded">
+                                    <i class="fas fa-trash fa-xs fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
