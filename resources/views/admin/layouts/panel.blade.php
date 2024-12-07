@@ -22,16 +22,21 @@
 <body>
 
     <div class="wrapper">
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
-                <button class="btn ms-auto" id="sliderButton" type="button">
+                <button id="sliderButton" class="btn ms-auto" type="button">
                     <i class="fas fa-bars fa-lg fa-fw"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
-                    <div class="navbar-nav ms-auto">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" id="slider-btn" aria-current="page" href="#">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
+                    <div class="navbar-nav gap-2 ms-auto">
+                        <a class="nav-link text-them-sec" aria-current="page" href="#">
+                            <i class="fas fa-bell fa-lg fa-fw"></i>
+                        </a>
+                        <a class="nav-link text-them-sec" aria-current="page" href="#">
+                            <i class="fas fa-envelope fa-lg fa-fw"></i>
+                        </a>
+                        <a class="nav-link text-them-sec" aria-current="page" href="#">
+                            <i class="fas fa-user fa-lg fa-fw"></i>
                         </a>
                     </div>
                 </div>
@@ -39,16 +44,37 @@
         </nav>
 
         <div class="slider shadow" id="sliderExample">
-            <div class="slider-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <div class="slider-head">
+                    <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/39a9ecd2-cfa9-49cd-a1bc-7747a5ca50de/width=700,original=false/00838.jpeg" 
+                        alt="admins" 
+                        class="slider-profile-image mb-2">
+                        <div class="lh-1">
+                            <p class="text-them fw-bold mb-0">Admin LongName</p>
+                            <small class="text-them-sec">youradmin@gmail.com</small>
+                        </div>
             </div>
             <div class="slider-body">
-                <nav class="nav flex-column">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </nav>
+                {{-- {{ dd(Route::currentRouteName()) }} --}}
+                <div class="container">
+                    <nav class="nav flex-column">
+                        <a class="nav-link slider-link @if(Route::currentRouteName() == 'admin.dashboard') active @endif" href="{{ route('admin.dashboard') }}">
+                            <i class="fas fa-home slider-icons"></i>Dashboard
+                        </a>
+                        <a class="nav-link slider-link" href="#">
+                            <i class="fas fa-user slider-icons"></i>Profile
+                        </a>
+                        <a class="nav-link slider-link @if(Route::currentRouteName() == 'admin.transaction') active @endif" href="{{route('admin.transaction')}}">
+                            <i class="fas fa-money-bill slider-icons"></i>Transaction
+                        </a>
+                        <hr class="soft my-1">
+                        <a class="nav-link slider-link" href="#">
+                            <i class="fas fa-boxes slider-icons"></i>Product
+                        </a>
+                        <a class="nav-link slider-link" href="#">
+                            <i class="fas fa-sign-out slider-icons"></i>LogOut
+                        </a>
+                    </nav>
+                </div>
             </div>
         </div>
 
@@ -61,23 +87,9 @@
     <script src="{{ asset('/assets/dist/js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/dist/js/popper.js') }}"></script>
     <script src="{{ asset('/assets/app/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/admin/panel.js') }}"></script>
     <script src="{{ asset('/assets/OwlCarousel/owl.carousel.min.js') }}"></script>
     @yield('script')
-    <script>
-        $('#sliderButton').click(function(event) {
-            if ($('#sliderExample').hasClass('active')) {
-                $('#sliderExample').removeClass('active');
-                $('#sliderBackground').removeClass('active');
-            } else {
-                $('#sliderExample').addClass('active');
-                $('#sliderBackground').addClass('active');
-            }
-        });
-        $('#sliderBackground').click(function() {
-            $('#sliderExample').removeClass('active');
-            $('#sliderBackground').removeClass('active');
-        })
-    </script>
 </body>
 
 </html>

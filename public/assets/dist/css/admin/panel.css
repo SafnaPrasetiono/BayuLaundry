@@ -1,20 +1,24 @@
 .wrapper{
     width: 100%;
     height: 100vh;
-    background-color: rgb(235, 235, 240);
+    background-color: rgb(242 255 253);
 }
-
+.text-them{
+    color: rgb(13, 91, 78)!important;
+}
+.text-them-sec{
+    color: rgb(110, 110, 110)!important;
+}
 
 .navbar{
     height: 55px;
+    background-color: transparent;
 }
 
 .pages{
     margin-left: 300px;
     padding: 16px 0px;
 }
-
-
 
 
 .slider{
@@ -26,6 +30,10 @@
     position: fixed;
     background-color: white;
     transition: linear all 0.3s;
+    background: #e9e7e5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #FFFFFF, #e9e7e5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FFFFFF, #e9e7e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
 .sliderBackground{
     top: 0;
@@ -37,8 +45,44 @@
     background-color: rgba(0, 0, 0, 0.5);
     transition: linear all 0.3s;
 }
+.slider .slider-head{
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.slider .slider-profile-image{
+    width: 54px;
+    height: 54px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+.slider .slider-link{
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-radius: 8px;
+    color: rgb(125, 125, 125);
+    transition: linear all 0.3s;
+}
+.slider .slider-link:hover{
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    background-color: rgba(92, 253, 226, 0.2);
+    color: rgb(13, 91, 78);
+}
+.slider .slider-link.active{
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    background-color: rgba(92, 253, 226, 0.2);
+    color: rgb(13, 91, 78);
+}
+.slider .slider-link .slider-icons{
+    width: 24px;
+}
 
-@media(max-width: 768px){
+@media(max-width: 992px){
     .slider{
         left: -350px;
     }

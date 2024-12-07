@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\dashboardController;
+use App\Http\Controllers\admin\transactionController;
 use App\Http\Controllers\auth\adminAuthController;
 use App\Http\Controllers\auth\userAuthController;
 use App\Http\Controllers\indexController;
@@ -18,4 +19,5 @@ Route::get('/signup', [userAuthController::class, 'signup'])->name('signup');
 Route::get('/admin/login', [adminAuthController::class, 'login'])->name('admin.login');
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('transaction', [transactionController::class, 'index'])->name('admin.transaction');
 });
