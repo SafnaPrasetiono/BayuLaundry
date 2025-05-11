@@ -57,6 +57,14 @@ return [
             'throw' => false,
         ],
 
+        's4' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

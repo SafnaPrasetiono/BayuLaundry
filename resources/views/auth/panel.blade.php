@@ -22,9 +22,10 @@
     </main>
 
 
-    <script src="{{ asset('assets/dist/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/popper.js') }}"></script>
-    <script src="{{ asset('assets/app/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/alert.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/jquery.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/popper.js') }}"></script>
+    <script src="{{ asset('/assets/app/js/bootstrap.min.js') }}"></script>
     @yield('script')
 </body>
 
