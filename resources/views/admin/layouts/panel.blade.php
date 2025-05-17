@@ -93,8 +93,7 @@
                         <a class="nav-link slider-link" href="#">
                             <i class="fas fa-cog slider-icons"></i>Settings
                         </a>
-                        <a class="nav-link slider-link" href="#logout" data-bs-toggle="modal"
-                            data-bs-target="#logoutModal">
+                        <a class="nav-link slider-link" href="#" id="LogOut">
                             <i class="fas fa-sign-out slider-icons"></i>LogOut
                         </a>
                     </nav>

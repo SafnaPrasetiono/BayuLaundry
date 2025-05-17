@@ -2,14 +2,15 @@
     <div class="container-fluid">
 
         <div class="d-block p-3 mb-2">
-            <h2 class="text-them fw-bold mb-0">Product</h2>
+            <h2 class="text-them fw-bold mb-0">Orders</h2>
             <p class="text-them-sec mb-0">Selamat datang kembali di aplikasi laundryku</p>
         </div>
 
         <div class="d-block bg-white rounded p-3">
+
             <div class="form-tables mb-3">
                 <div class="d-flex gap-2">
-                    <a href="{{ route('admin.product.create') }}" class="btn btn-outline-success">
+                    <a href="{{ route('admin.orders.create') }}" class="btn btn-outline-success">
                         <i class="fas fa-plus fa-sm fa-fw"></i>
                     </a>
                     @if ($selected != null)
@@ -61,16 +62,17 @@
                 </div>
             </div>
 
+
             <div class="table-responsive mb-2">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="text-wrap">
-                                <input type="checkbox" wire:model="selectedAll" wire:change="clickSelected"
-                                    class="form-check-input">
+                            <th>
+                                <input class="form-check-input" type="checkbox" value="">
                             </th>
-                            <th class="text-them">Image</th>
-                            <th class="text-them">Product_name</th>
+                            <th class="text-them">ID</th>
+                            <th class="text-them">Numbers</th>
+                            <th class="text-them">Costumer</th>
                             <th class="text-them">Price</th>
                             <th class="text-them">Status</th>
                             <th class="text-them">Date</th>
@@ -78,30 +80,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $index => $item)
-                            
                         <tr>
-                            <th class="text-wrap">
-                                <input type="checkbox" wire:model="selected" wire:change="clickSelectedOne"
-                                    class="form-check-input" value="{{ $item->product_id }}">
+                            <th>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             </th>
-                            <th class="text-them">
-                                <div 
-                                    class="product-card-image ratio ratio-4x3 rounded" 
-                                    style="background-image: url('/images/product/{{$item->image}}')">
-                                </div>
-                            </th>
-                            <td>{{$item->title}}</td>
-                            <td>Rp. {{number_format($item->price, 0, '.', ',')}}</td>
+                            <th class="text-them">#eMBpT01</th>
+                            <td>R1C1</td>
+                            <td>Iwan Banara</td>
+                            <td>Rp. 56.000</td>
                             <td>
-                                @if ($item->status == 1)
-                                <span class="badge text-bg-success">Active</span>
-                                @elseif($item->status == 0)
-                                <span class="badge text-bg-secondary">Non Active</span>
-                                @endif
+                                <span class="badge text-bg-success">success</span>
                             </td>
                             <td>
-                                {{ $item->created_at }}
+                                {{ now() }}
                             </td>
                             <td class="gap-1">
                                 <div class="dropstart">
@@ -109,10 +100,10 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                     </button>
                                     <div class="dropdown-menu position-fixed border-0 shadow" style="width: 200px">
-                                        <a class="dropdown-item link-black" href="{{route('admin.product.detail', ['id' => $item->product_id, 'slug' => $item->slug])}}">
+                                        <a class="dropdown-item link-secondary" href="#">
                                             <i class="fas fa-eye fa-sm me-3"></i> Detail
                                         </a>
-                                        <a class="dropdown-item link-black" href="{{route('admin.product.update', ['id' => $item->product_id])}}">
+                                        <a class="dropdown-item link-secondary" href="#">
                                             <i class="fas fa-pencil-alt fa-sm me-3"></i> Edit Data
                                         </a>
                                         <hr class="soft my-2 mx-2">
@@ -123,109 +114,39 @@
                                             <i class="fas fa-download fa-sm me-3"></i> Download
                                         </a>
                                         <hr class="soft my-2 mx-2">
-                                        <button class="dropdown-item" wire:click="DeleteAction({{ $item->product_id }})">
+                                        <a class="dropdown-item link-secondary" href="#">
                                             <i class="fas fa-trash fa-sm me-3"></i> Delete Data
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
 
-            <div class="d-flex">
-                <div class="ms-auto">
-                    {{ $data->links('livewire.paginations.paginate') }}
-                </div>
-            </div>
+            <nav class="d-flex" aria-label="Page navigation example">
+                <ul class="pagination ms-auto">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
 
+
+
+
     </div>
-
-
-
-    
-    <div class="modal fade" id="ModalDeleteAllData" wire:ignore.self>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-center">
-                        <i class="fas fa-exclamation-triangle fa-4x fa-fw text-warning"></i>
-                        <p class="fw-bold">PERHATIAN</p>
-                    </div>
-                    <p>Kamu akan menghapus semua isi data yang dimana diantara persyaratan data yang akan di
-                        delete sebagai berikut:</p>
-                    <ol>
-                        <li>Semua data akan terhapus</li>
-                        <li>Data yang terhapus tidak dapat dikembalikan</li>
-                        <li>Anda hanya dapat menyimpan data sebagai archive</li>
-                        <li>Sebaiknya ada membackup data seblum dihapus</li>
-                        <li>Developer tidak bertanggung jawah atas kehilangan data yang telah terhapus</li>
-                    </ol>
-                    <p>Jika anda yakin untuk menghapus semua data, pastikan anda mencentang persetujuan dibawah ini</p>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkTrued" wire:model.live="syarat">
-                        <label class="form-check-label" for="checkTrued">
-                            Saya Menyetujuinya
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger" wire:click="DeleteActionAll"
-                        @if ($syarat == false) disabled @endif>Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-        window.addEventListener('deleteModel', () => {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Livewire.dispatch('DeleteActionGo');
-                }
-            });
-        })
-        window.addEventListener('deleteModelAll', () => {
-            $('#ModalDeleteAllData').modal("hide");
-            Swal.fire({
-                title: "Deleted!",
-                text: "All your data has been deleted.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        })
-        window.addEventListener('deleteModelSuccess', () => {
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your data has been deleted.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        })
-        window.addEventListener('deleteModelError', () => {
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your data failed to deleted.",
-                icon: "error",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        })
-    </script>
 </div>

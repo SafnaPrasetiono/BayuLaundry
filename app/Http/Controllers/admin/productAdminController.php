@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class productController extends Controller
+class productAdminController extends Controller
 {
     public function data()
     {
@@ -144,5 +144,14 @@ class productController extends Controller
                 return redirect()->back()->withInput()->with('error', 'Sorry something with update data!');
             }
         }
+    }
+
+
+    public function detail($id, $slug)
+    {
+        $data = product::find($id);
+        return view('admin.product.detail', [
+            'data' => $data
+        ]);
     }
 }

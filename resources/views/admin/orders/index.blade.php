@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <div class="d-block bg-white rounded p-3">
             <form action="{{ route('admin.orders.upload') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -16,7 +16,9 @@
                 <button class="btn btn-primary px-5" type="submit">Checkout</button>
             </form>
         </div>
-    </div>
+    </div> --}}
+
+    @livewire('admin.order.data')
 @endsection
 
 @section('script')

@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class orderController extends Controller
+class orderAdminController extends Controller
 {
     public function index()
     {
         return view('admin.orders.index');
+    }
+
+    public function create()
+    {
+        return view('admin.orders.create');
     }
 
     public function uploadFile(Request $request)

@@ -27,45 +27,57 @@
                 <i class="fas fa-bars fa-lg fa-fw"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav gap-2 ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">Product</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+                    @livewire('pages.panel.cart-navbar')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About Me</a>
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-search fa-sm fa-fw"></i>
+                        </a>
                     </li>
-                    <div class="d-block d-lg-none">
+                    @auth('users')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Masuk</a>
+                            <a href="{{ route('user.wishlist') }}" class="nav-link text-dark">
+                                <i class="far fa-heart fa-lg fa-fw text-dark"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('signup') }}">Daftar</a>
+                            <a href="#" class="nav-link text-dark">
+                                <i class="far fa-bell fa-lg fa-fw"></i>
+                            </a>
                         </li>
-                    </div>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="far fa-envelope fa-lg fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link text-dark">
+                                @if (auth('user')->user()->avatar == 'sample-avatar.png')
+                                    <img class="rounded-circle"
+                                        src="{{ url('/images/avatar/' . auth('user')->user()->avatar) }}" alt="user"
+                                        width="28px" height="28px">
+                                @else
+                                    <img class="rounded-circle"
+                                        src="{{ url('/images/avatar/user/' . auth('user')->user()->avatar) }}"
+                                        alt="user" width="28px" height="28px">
+                                @endif
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item me-2">
+                            <a href="{{ route('signup') }}" class="btn btn-outline-success rounded px-3">DAFTAR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="btn btn-success rounded px-4">MASUK</a>
+                        </li>
+                    @endauth
                 </ul>
-                <form class="d-none d-lg-flex gap-2 ms-2" role="search">
-                    <a href="{{ route('login') }}" class="btn btn-outline-secondary py-1"
-                        style="width: 120px">Masuk</a>
-                    <a href="{{ route('signup') }}" class="btn btn-outline-warning py-1"
-                        style="width: 120px">Daftar</a>
-                </form>
             </div>
         </div>
     </nav>
@@ -88,20 +100,27 @@
                     <div class="col-12 col-md-5">
                         <div class="row">
                             <div class="col-12 col-md-6">
-                                <p class="fw-bold">About Link</p>
+                                <p class="fw-bold">About Website</p>
                                 <ul class="nav flex-column">
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
+                                    <a class="nav-link link-secondary px-0 link-light"
+                                        href="{{ route('privacy') }}">Privasi</a>
+                                    <a class="nav-link link-secondary px-0 link-light"
+                                        href="{{ route('about') }}">About Me</a>
+                                    <a class="nav-link link-secondary px-0 link-light"
+                                        href="{{ route('howpayment') }}">Cara Pemesanan</a>
+                                    <a class="nav-link link-secondary px-0 link-light"
+                                        href="{{ route('termcondition') }}">Syart & Ketentuan</a>
                                 </ul>
                             </div>
                             <div class="col-12 col-md-6">
-                                <p class="fw-bold">About Link</p>
+                                <p class="fw-bold">Member Part</p>
                                 <ul class="nav flex-column">
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
-                                    <a class="nav-link link-secondary px-0 link-light" href="#">Link</a>
+                                    <a class="nav-link link-secondary px-0 link-light" href="#">Masuk</a>
+                                    <a class="nav-link link-secondary px-0 link-light" href="#">Daftar</a>
+                                    <a class="nav-link link-secondary px-0 link-light" href="#">Join
+                                        Instagram</a>
+                                    <a class="nav-link link-secondary px-0 link-light" href="#">Join
+                                        Facebook</a>
                                 </ul>
                             </div>
                         </div>
@@ -128,7 +147,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            
+
         </div>
     </div>
 

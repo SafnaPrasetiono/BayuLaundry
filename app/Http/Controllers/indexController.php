@@ -18,4 +18,19 @@ class indexController extends Controller
     {
         return view('pages.aboutme');
     }
+
+    public function termcondition()
+    {
+        return view('pages.termcondition');
+    }
+
+    public function howpayment()
+    {
+        return view('pages.howpayment');
+    }
+
+    public function privacy()
+    {
+        return view('pages.privacy');
+    }
 }

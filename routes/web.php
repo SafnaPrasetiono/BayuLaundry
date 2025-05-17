@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\dashboardController;
-use App\Http\Controllers\admin\orderController;
-use App\Http\Controllers\admin\productController;
-use App\Http\Controllers\admin\profileController;
-use App\Http\Controllers\admin\transactionController;
+use App\Http\Controllers\admin\orderAdminController;
+use App\Http\Controllers\admin\productAdminController;
+use App\Http\Controllers\admin\profileAdminController;
+use App\Http\Controllers\admin\transactionAdminController;
 use App\Http\Controllers\auth\adminAuthController;
 use App\Http\Controllers\auth\userAuthController;
 use App\Http\Controllers\indexController;
@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [indexController::class, 'index'])->name('index');
 Route::get('/home', [indexController::class, 'index'])->name('index');
 Route::get('/about', [indexController::class, 'about'])->name('about');
+Route::get('/privasi', [indexController::class, 'privacy'])->name('privacy');
+Route::get('/cara_pemesanan', [indexController::class, 'howpayment'])->name('howpayment');
+Route::get('/term&condition', [indexController::class, 'termcondition'])->name('termcondition');
 
 Route::get('/login', [userAuthController::class, 'login'])->name('login');
 Route::get('/signup', [userAuthController::class, 'signup'])->name('signup');
@@ -27,7 +30,7 @@ Route::get('/admin/login', [adminAuthController::class, 'login'])->name('admin.l
 Route::prefix('admin')->middleware([adminAuthenticate::class])->group(function () {
     Route::get('/dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/profile', [profileController::class, 'index'])->name('admin.profile');
+    Route::get('/profile', [profileAdminController::class, 'index'])->name('admin.profile');
     
     // ACCOUNT ROUTING
     Route::get('/account', [adminController::class, 'index'])->name('admin.account');
@@ -37,18 +40,20 @@ Route::prefix('admin')->middleware([adminAuthenticate::class])->group(function (
     Route::put('/account/update/{id}/post', [adminController::class, 'updatePost'])->name('admin.account.update.post');
     
     // PRODUCT ROUTING
-    Route::get('/product', [productController::class, 'data'])->name('admin.product');
-    Route::get('/product/create', [productController::class, 'create'])->name('admin.product.create');
-    Route::post('/product/create/post', [productController::class, 'createPost'])->name('admin.product.create.post');
-    Route::get('/product/update/{id}', [productController::class, 'update'])->name('admin.product.update');
-    Route::put('/product/update/post/{id}', [productController::class, 'updatePost'])->name('admin.product.update.post');
+    Route::get('/product', [productAdminController::class, 'data'])->name('admin.product');
+    Route::get('/product/create', [productAdminController::class, 'create'])->name('admin.product.create');
+    Route::post('/product/create/post', [productAdminController::class, 'createPost'])->name('admin.product.create.post');
+    Route::get('/product/update/{id}', [productAdminController::class, 'update'])->name('admin.product.update');
+    Route::put('/product/update/post/{id}', [productAdminController::class, 'updatePost'])->name('admin.product.update.post');
+    Route::get('/product/detail/{id}/{slug}', [productAdminController::class, 'detail'])->name('admin.product.detail');
     
     // TRANSACTION ROUTING
-    Route::get('transaction', [transactionController::class, 'index'])->name('admin.transaction');
+    Route::get('transaction', [transactionAdminController::class, 'index'])->name('admin.transaction');
     
     
-    Route::get('/order', [orderController::class, 'index'])->name('admin.orders');
-    Route::post('/order/upload', [orderController::class, 'uploadFile'])->name('admin.orders.upload');
+    Route::get('/order', [orderAdminController::class, 'index'])->name('admin.orders');
+    Route::get('/order/create', [orderAdminController::class, 'create'])->name('admin.orders.create');
+    Route::post('/order/upload', [orderAdminController::class, 'uploadFile'])->name('admin.orders.upload');
 
 
     Route::get('/logout', [adminController::class, 'logout'])->name('admin.logout');

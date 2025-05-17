@@ -23,7 +23,6 @@ class product extends Model
         'dateDiscountEnd',
         'dateProduct',
         'description',
-        // 'descriptionList',
         'price_other',
         'images',
     ];

@@ -92,7 +92,10 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <button class="btn btn-outline-primary btn-lg w-100 mb-4">Pilih paket</button>
+                                        <form action="{{route('order.product', ['id' => $item->product_id])}}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-primary btn-lg w-100 mb-4">Pilih paket</button>
+                                        </form>
                                         <hr class="soft">
                                         <ul style="list-style: none" class="px-2">
                                             @foreach ($item->descriptionList as $items)
