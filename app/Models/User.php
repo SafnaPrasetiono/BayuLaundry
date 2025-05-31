@@ -29,7 +29,8 @@ class User extends Authenticatable
         'born',
         'avatar',
         'country',
-        'is_active',
+        'active',
+        'vKey',
     ];
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class adminAuthenticate
+class userAuthenticate
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,9 @@ class adminAuthenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::guard('admins')->check()){
-            return redirect()->route('admin.login');
+        if(!Auth::guard('users')->check()){
+            return redirect()->route('login');
         }
-
         $response = $next($request);
         $response->headers->set('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
         $response->headers->set('Pragma', 'no-cache');

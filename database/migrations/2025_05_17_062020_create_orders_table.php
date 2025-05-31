@@ -18,11 +18,9 @@ return new class extends Migration
             $table->date('order_date');
             $table->enum('status', ['payment', 'pending', 'progress', 'waiting', 'completed', 'cancle'])->default('payment');
             $table->string('payment_method');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->timestamps();
 
-            // Foreign keys
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

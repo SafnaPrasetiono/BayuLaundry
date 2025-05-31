@@ -20,13 +20,10 @@ return new class extends Migration
             $table->enum('status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->text('description')->nullable();
             $table->timestamp('transaction_date')->useCurrent(); 
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->bigInteger('order_id');
+            $table->bigInteger('user_id')->nullable();
             $table->timestamps();
 
-            // Foreign keys
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

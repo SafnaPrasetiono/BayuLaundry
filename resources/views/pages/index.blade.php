@@ -73,14 +73,14 @@
                                             @if ($item->discount != null && strtotime(date('Y-m-d')) < strtotime($item->dateDiscountEnd))
                                                 <div class="mb-2">
                                                     <span class="text-decoration-line-through">Rp.
-                                                        {{ number_format($item->price) }}</span>
+                                                        {{ number_format($item->price_other) }}</span>
                                                     <span class="badge rounded-pill text-bg-primary">Diskon
                                                         {{ $item->discount }}%</span>
                                                 </div>
                                                 <div class="d-flex align-items-end">
                                                     <span class="fs-4 mb-1">Rp.</span>
                                                     <span
-                                                        class="fw-bold fs-1">{{ number_format($item->price_other) }}</span>
+                                                        class="fw-bold fs-1">{{ number_format($item->price) }}</span>
                                                     <span class="fs-4 mb-1">/Kg</span>
                                                 </div>
                                             @else
@@ -92,8 +92,9 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <form action="{{route('order.product', ['id' => $item->product_id])}}" method="POST">
+                                        <form action="{{route('order.product')}}" method="POST">
                                             @csrf
+                                            <input type="text" name="product_id" class="d-none" value="{{$item->product_id}}">
                                             <button type="submit" class="btn btn-outline-primary btn-lg w-100 mb-4">Pilih paket</button>
                                         </form>
                                         <hr class="soft">

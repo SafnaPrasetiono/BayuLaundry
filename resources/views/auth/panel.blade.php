@@ -26,6 +26,27 @@
     <script src="{{ asset('/assets/dist/js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/dist/js/popper.js') }}"></script>
     <script src="{{ asset('/assets/app/js/bootstrap.min.js') }}"></script>
+    @if (session()->has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Jobs!',
+                text: '{{ session()->get('success') }}',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        </script>
+    @elseif(session()->has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Opps...!',
+                text: '{{ session()->get('error') }}',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        </script>
+    @endif
     @yield('script')
 </body>
 

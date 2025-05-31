@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="login-body">
-            <form>
+            <form wire:submit='login'>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
@@ -37,7 +37,7 @@
                         <a href="#" class="text-decoration-none">Lupa Password?</a>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary form-control mb-4" wire:click='login' wire:target='login' wire:loading.class="disabled placeholder">LOGIN</button>
+                <button type="submit" class="btn btn-primary form-control mb-4" wire:target='login' wire:loading.class="disabled placeholder">LOGIN</button>
             </form>
         </div>
     </div>

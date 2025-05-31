@@ -7,3 +7,13 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.tmp-image{
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    object-position: center;
+
+}

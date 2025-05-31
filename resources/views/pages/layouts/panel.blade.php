@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     @yield('head')
+    @livewireStyles
     <link rel="stylesheet" href="{{ asset('/assets/app/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/index.css') }}">
@@ -23,57 +24,59 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">Laundryku</a>
+            <a class="btn position-relative link-dark d-lg-none ms-auto" href="{{ route('order') }}">
+                <i class="fas fa-shopping-cart fa-sm fa-fw" aria-hidden="true"></i>
+                @if (session('cart') && count(session('cart')) > 0)
+                    <span class="position-absolute top-0 start-100 mt-1 translate-middle badge rounded-pill bg-danger">
+                        {{ count(session('cart')) }}
+                    </span>
+                @endif
+            </a>
+            <botton class="btn d-lg-none">
+                <i class="fas fa-search fa-sm fa-fw"></i>
+            </botton>
             <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#slider">
-                <i class="fas fa-bars fa-lg fa-fw"></i>
+                <i class="fas fa-bars fa-sm fa-fw"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav gap-2 ms-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav gap-2 align-items-stretch ms-auto">
+                    <li class="nav-item align-self-center">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item align-self-center">
                         <a class="nav-link" href="#">Product</a>
                     </li>
-                    @livewire('pages.panel.cart-navbar')
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-search fa-sm fa-fw"></i>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link" href="{{ route('about') }}">Aboutme</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link position-relative link-dark" href="{{ route('order') }}">
+                            <i class="far fa-shopping-basket" aria-hidden="true"></i>
+                            @if (session('cart') && count(session('cart')) > 0)
+                                <span
+                                    class="position-absolute top-0 start-100 mt-1 translate-middle badge rounded-pill bg-danger">
+                                    {{ count(session('cart')) }}
+                                </span>
+                            @endif
+                        </a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link link-dark" href="#">
+                            <i class="far fa-search"></i>
                         </a>
                     </li>
                     @auth('users')
-                        <li class="nav-item">
-                            <a href="{{ route('user.wishlist') }}" class="nav-link text-dark">
-                                <i class="far fa-heart fa-lg fa-fw text-dark"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-dark">
-                                <i class="far fa-bell fa-lg fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-dark">
-                                <i class="far fa-envelope fa-lg fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link text-dark">
-                                @if (auth('user')->user()->avatar == 'sample-avatar.png')
-                                    <img class="rounded-circle"
-                                        src="{{ url('/images/avatar/' . auth('user')->user()->avatar) }}" alt="user"
-                                        width="28px" height="28px">
-                                @else
-                                    <img class="rounded-circle"
-                                        src="{{ url('/images/avatar/user/' . auth('user')->user()->avatar) }}"
-                                        alt="user" width="28px" height="28px">
-                                @endif
+                        <li class="nav-item align-self-center">
+                            <a href="{{ route('user.profile') }}" class="nav-link link-dark">
+                                <img class="tmp-image" src="{{ url('/images/avatar/' . auth('users')->user()->avatar) }}"
+                                    alt="user" width="28px" height="28px">
                             </a>
                         </li>
                     @else
-                        <li class="nav-item me-2">
+                        <li class="nav-item align-self-center">
                             <a href="{{ route('signup') }}" class="btn btn-outline-success rounded px-3">DAFTAR</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item align-self-center">
                             <a href="{{ route('login') }}" class="btn btn-success rounded px-4">MASUK</a>
                         </li>
                     @endauth
@@ -142,20 +145,45 @@
         </div>
     </footer>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="slider" style="width: 22rem">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="slider" style="width: 21rem">
         <div class="offcanvas-header">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-
+            @include('pages.layouts.menu')
         </div>
     </div>
 
+    <script src="{{ asset('/assets/dist/js/alert.js') }}"></script>
     <script src="{{ asset('/assets/dist/js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/dist/js/popper.js') }}"></script>
+    <script src="{{ asset('/assets/dist/js/index.js') }}"></script>
     <script src="{{ asset('/assets/app/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/OwlCarousel/owl.carousel.min.js') }}"></script>
+    @if (session()->has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Jobs!',
+                text: '{{ session()->get('success') }}',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        </script>
+    @elseif(session()->has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Opps...!',
+                text: '{{ session()->get('error') }}',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        </script>
+    @endif
     @yield('script')
+    @livewireScripts
+
 </body>
 
 </html>

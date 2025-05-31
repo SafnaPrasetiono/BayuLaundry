@@ -84,7 +84,7 @@ class adminController extends Controller
     public function update($id)
     {
         $data = admins::find($id);
-        return view('admin.account.update',[
+        return view('admin.account.update', [
             'data' => $data
         ]);
     }
@@ -150,8 +150,8 @@ class adminController extends Controller
     public function logout()
     {
         if (Auth::guard('admins')->check()) {
-            // session()->has('notif');
-            // session()->put('notif');
+            session()->invalidate();
+            session()->regenerateToken();
             Auth::guard('admins')->Logout();
             return redirect()->route('admin.login');
         }

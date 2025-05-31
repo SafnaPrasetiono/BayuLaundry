@@ -20,13 +20,10 @@ return new class extends Migration
             $table->string('product_weight');
             $table->string('product_image');
             $table->string('product_total');
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('product_id');
+            $table->bigInteger('order_id');
+            $table->bigInteger('product_id');
             $table->timestamps();
 
-            // Foreign keys
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

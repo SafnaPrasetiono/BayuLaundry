@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->date('born', 14)->nullable();
             $table->string('avatar');
-            $table->string('country');
-            $table->boolean('is_active');
+            $table->string('country')->nullable();
+            $table->enum('active', [0, 1, 2, 3])->default(0);
+            $table->text('vKey');
             $table->rememberToken();
             $table->timestamps();
         });
